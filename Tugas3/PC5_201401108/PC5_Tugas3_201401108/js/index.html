@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modul 1</title>
+    <style>
+      body {
+        background: rgba(255, 255, 255, 1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas1"></canvas>
+    <canvas id="canvas2"></canvas>
+    <hr />
+    <hr />
+    <button id="read">Baca Gambar</button>
+    <hr />
+    <button id="ori">Original Gambar</button>
+    <hr />
+    <select name="" id="histval">
+      <option value="0">Red</option>
+      <option value="1">Green</option>
+      <option value="2">Blue</option>
+    </select>
+    <button id="hist1">Histogram</button>
+    <hr />
+    R
+    <input
+      type="range"
+      name=""
+      id="ch1"
+      data-id="1"
+      min="-255"
+      max="255"
+    /><input type="text" name="" id="chv1" size="3" disabled value="0" /><br />
+    G
+    <input
+      type="range"
+      name=""
+      id="ch2"
+      data-id="2"
+      min="-255"
+      max="255"
+    /><input type="text" name="" id="chv2" size="3" disabled value="0" /><br />
+    B
+    <input
+      type="range"
+      name=""
+      id="ch3"
+      data-id="3"
+      min="-255"
+      max="255"
+    /><input type="text" name="" id="chv3" size="3" disabled value="0" /><br />
+    A
+    <input type="range" name="" id="ch4" data-id="4" min="0" max="255" /><input
+      type="text"
+      name=""
+      id="chv4"
+      size="3"
+      disabled
+      value="255"
+    /><br />
+    <button id="default">Default RGBA</button>
+    <script src="js/pc.js"></script>
+    <script src="js/skrip.js"></script>
+  </body>
+</html>
