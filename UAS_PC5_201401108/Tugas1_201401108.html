@@ -733,19 +733,27 @@ document.getElementById('gabungan').addEventListener('click', function () {
                 temp.push(tes[c][d])
             }
             tesbackup.push(temp)
-        }
+        }var xpos = 0;
+        var ypos = 0;
+        function cek(x,y,n){
+            if(y>=0 && x>=0 && x<obj.width && y<obj.height) return parseInt(tesbackup[obj.xy2i(x,y)])
+                else return 0
+            }
         var wnow = obj.width
         var hnow = obj.height
         for (var i = 0; i < tesbackup.length; i++) {
             x = obj.i2x(i)
             y = obj.i2y(i)
+            // Grayscale
             if (x < wnow / 4 && y < hnow / 2) {
+               
                 posnow = obj.xy2i(wnow - x - 1, y)
                 var total = Math.floor((tesbackup[i][0] + tesbackup[i][1] + tesbackup[i][2]) / 3)
                 tes[i][0] = total
                 tes[i][1] = total
                 tes[i][2] = total
                 tes[i][3] = tesbackup[i][3]
+            // Vertical
             } else if (x > wnow / 4 && x < wnow * 1 / 2 && y > hnow / 2) {
 
                 posnow = obj.xy2i(x, hnow - y - 1)
@@ -753,7 +761,7 @@ document.getElementById('gabungan').addEventListener('click', function () {
                 tes[i][1] = tesbackup[posnow][1]
                 tes[i][2] = tesbackup[posnow][2]
                 tes[i][3] = tesbackup[posnow][3]
-            
+            // original
              } else if (x > wnow / 4 && x < wnow * 1 / 2 && y < hnow / 2) {
 
                 posnow = obj.xy2i(obj.width - 1 - x, y)
@@ -761,7 +769,7 @@ document.getElementById('gabungan').addEventListener('click', function () {
                 tes[i][1] = tesbackup[posnow][1]
                 tes[i][2] = tesbackup[posnow][2]
                 tes[i][3] = tesbackup[posnow][3] 
-            
+            // Horizontal / Mirror
             } else if (x < wnow / 4 && y < hnow / 2) {
                
                 posnow = obj.xy2i(obj.width - 1 - x, y)
@@ -770,29 +778,32 @@ document.getElementById('gabungan').addEventListener('click', function () {
                 tes[i][2] = tesbackup[posnow][2]
                 tes[i][3] = tesbackup[posnow][3]
             }
+            // Flip Gabungan
             else if (x < wnow / 4 && y > hnow / 2) {
+                
                 posnow = obj.xy2i(obj.width - 1 - x, obj.height - 1 - y)
                 tes[i][0] = tesbackup[posnow][0]
                 tes[i][1] = tesbackup[posnow][1]
                 tes[i][2] = tesbackup[posnow][2]
                 tes[i][3] = tesbackup[posnow][3]
+            // Laplacian  
             } else if (x > wnow * 3 / 4 && x < wnow && y > hnow / 2) {
-                posnow = obj.xy2i(wnow - x - 1, y)
-                tes[i][0] = tesbackup[i][0]
-                tes[i][1] = tesbackup[i][1]
-                tes[i][2] = 255
-                tes[i][3] = tesbackup[i][3] 
-            
-            } else if (x > wnow * 3 / 4 && x < wnow && y < hnow / 2) {
                 
+                xpos = obj.i2x(i)
+                ypos = obj.i2y(i)
+                for(var j=0; j<3; j++){
+                tes[i][j] = (cek(xpos,ypos-1)*-1) + (cek(xpos-1,ypos)*-1) + (cek(xpos,ypos)*4) +(cek(xpos+1,ypos)*-1) + (cek(xpos,ypos+1)*-1)}
+            // RGB 
+            } else if (x > wnow * 3 / 4 && x < wnow && y < hnow / 2) {
                 
                 posnow = obj.xy2i(wnow - x - 1, hnow - y - 1)
                 tes[i][0] = tesbackup[i][0]
                 tes[i][1] = 255
                 tes[i][2] = tesbackup[i][2]
                 tes[i][3] = tesbackup[i][3] 
-           
+            // Negatif
             } else if (x > wnow * 1 / 2 && x < wnow * 3 / 4 && y < hnow / 2) {
+                
                 posnow = obj.xy2i(wnow - x - 1, y)
                 tes[i][0] = (255 - tesbackup[i][0])
                 tes[i][1] = (255 - tesbackup[i][1])
