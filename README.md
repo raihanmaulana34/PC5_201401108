@@ -22,3 +22,6 @@
 ![sobel](https://user-images.githubusercontent.com/99314844/205583096-7c673a66-ed43-4058-acfe-911f748cce8d.jpg)
 > prewit
 ![prewit](https://user-images.githubusercontent.com/99314844/205583392-b19f191f-5455-452c-bea9-edc312b18a67.jpg)
+
+#### UAS Lab 5
+![SS UAS](https://user-images.githubusercontent.com/99314844/206968372-229f72d5-4202-42dd-b17d-880f329c519f.jpg)
